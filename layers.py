@@ -45,7 +45,7 @@ class GC(Module):
 
 class GC_withres(Module):
     """
-    Simple GCN layer, similar to https://arxiv.org/abs/1609.02907
+    res conv
     """
     def __init__(self, in_features, out_features,smooth,bias=True):
         super(GC_withres, self).__init__()
@@ -360,7 +360,7 @@ class GC_withres(Module):
 
 class NGCN(Module):
     """
-    N-GCN model, consider 3 Lap matrix
+    Bandpass model, consider 3 Lap matrix
     """
     def __init__(self, in_features,med_f0,med_f1,med_f2,med_f3,med_f4,bias=True):
         super(NGCN, self).__init__()
