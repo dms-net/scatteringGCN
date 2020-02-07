@@ -6,6 +6,8 @@ python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct
 
 
 to be updated...
+
+
 requirement:
 pytorch
 cuda
