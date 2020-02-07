@@ -402,16 +402,11 @@ class NGCN(Module):
 
         stdv3 = 1. / math.sqrt(self.weight3.size(1))
         stdv4 = 1. / math.sqrt(self.weight4.size(1))
-#        stdv5 = 1. / math.sqrt(self.weight5.size(1))
-
-        #self.weight.data.uniform_(-stdv, stdv)
         torch.nn.init.xavier_uniform(self.weight0)
-#        torch.nn.init.xavier_uniform(self.weight3)
         torch.nn.init.xavier_uniform(self.weight2)
         torch.nn.init.xavier_uniform(self.weight1)
         torch.nn.init.xavier_uniform(self.weight3)
         torch.nn.init.xavier_uniform(self.weight4)
-#        torch.nn.init.xavier_uniform(self.weight5)
         if self.bias0 is not None:
             self.bias1.data.uniform_(-stdv1, stdv1)
             self.bias0.data.uniform_(-stdv0, stdv0)
@@ -419,48 +414,30 @@ class NGCN(Module):
 
             self.bias3.data.uniform_(-stdv3, stdv3)
             self.bias4.data.uniform_(-stdv4, stdv4)
-#            self.bias5.data.uniform_(-stdv5, stdv5)
 
     def forward(self, input, adj,A_tilde,adj_sct_o1,adj_sct_o2):
         # adj is extracted from the graph structure
-        #support = torch.mm(input, self.weight)
-#        output0 = torch.spmm(adj, input)
-#        support0 = torch.mm(output0, self.weight0)
-#        output1 = torch.spmm(adj, output0)
-#        support1 = torch.mm(output1, self.weight1)
-#        output2 = torch.spmm(adj, output1)
-#        support2 = torch.mm(output2, self.weight2)
         support0 = torch.mm(input, self.weight0)
-#        output0 = torch.spmm(adj_sct_o1.cuda(), support0)
         output0 = torch.spmm(A_tilde, support0) + self.bias0
         support1 = torch.mm(input, self.weight1)
         output1 = torch.spmm(A_tilde, support1)
         output1 = torch.spmm(A_tilde, output1)+ self.bias1
 
         support2 = torch.mm(input, self.weight2)
-#        output2 = support2 + self.bias2
         output2 = torch.spmm(A_tilde, support2)
         output2 = torch.spmm(A_tilde, output2)
         output2 = torch.spmm(A_tilde, output2)+ self.bias2
 
 
         support3 = torch.mm(input, self.weight3) 
-#        support3 = torch.abs(support3)
         output3 = torch.spmm(adj_sct_o1.cuda(), support3)+ self.bias3
-#        output3 = torch.spmm(adj, output3)
 
         support4 = torch.mm(input, self.weight4)
-#        support4 = torch.abs(support4)
         output4 = torch.spmm(adj_sct_o2.cuda(), support4)+ self.bias4
 
 
-#        support5 = torch.mm(input, self.weight5) + self.bias5
-#        output5 = torch.spmm(adj_sct_o3.cuda(), support5)
-
         support_3hop = torch.cat((output0,output1,output2,output3,output4), 1)
         output_3hop = support_3hop
-        #support_3hop = F.relu(support_3hop)
-        #output_3hop = torch.mm(support_3hop, self.weight)
         if self.bias0 is not None:
             return output_3hop  
             #return output_3hop
