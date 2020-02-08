@@ -25,7 +25,7 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 *  * Index = 3 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  
 *  * Index = 4 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2|\Psi_3|}">  
 
-8. `dropout`: ~
+8. `dropout`: The dropout setting
 9. `smoo`: The graph residual convolution kernel's parameters.
 
 
@@ -33,7 +33,7 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 
 
 ## Training curve 
-### (with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution)
+`with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual` convolution)
 <img src="Figures/Accuracy.jpg" alt="Accuracy"  width="600" >
 
 
