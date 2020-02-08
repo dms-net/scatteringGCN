@@ -38,11 +38,11 @@ with different <img src="https://render.githubusercontent.com/render/math?math=\
 
 
 
-## requirement:
+## Requirement:
 pytorch\
 cuda\
 scipy: for the sparse matrix operation 
 
-## MISC
+## Misc
 The original code of GCN(pytorch):\
 https://github.com/tkipf/pygcn
