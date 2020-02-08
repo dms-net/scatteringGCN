@@ -19,10 +19,10 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 7. `sct_inx2`:  <-----the index of second channel, the index order is listed in Tab 3,4,5.
 
 * * Scattering term
-*  * Index = 0 <----- <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1}">     \
-*  * Index = 1 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2}">  \ 
-*  * Index = 2 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_3}">  \  
-*  * Index = 3 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  \ 
+*  * Index = 0 <----- <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1}">     
+*  * Index = 1 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2}">   
+*  * Index = 2 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_3}">    
+*  * Index = 3 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  
 *  * Index = 4 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2|\Psi_3|}">  
 
 8. `dropout`: ~
