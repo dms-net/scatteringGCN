@@ -1,6 +1,6 @@
 from __future__ import division
 from __future__ import print_function
-from utils import load_citation
+from utils import load_citation, accuracy
 import time
 import argparse
 import numpy as np
@@ -9,7 +9,6 @@ from scipy import sparse
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
-from utils_sct import load_data_sct, accuracy
 from models import GCN
 # Training settings
 parser = argparse.ArgumentParser()
