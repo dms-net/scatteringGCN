@@ -43,3 +43,6 @@ pytorch\
 cuda\
 scipy: for the sparse matrix operation 
 
+#### MISC
+The original code of GCN(pytorch):\
+https://github.com/tkipf/pygcn
