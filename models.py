@@ -12,7 +12,7 @@ class GCN(nn.Module):
 
     def forward(self, x,adj, A_tilde,adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16,sct_index1,sct_index2):
         scat_dict = [adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16]
-        x = F.relu(torch.FloatTensor.abs_(self.gc1(x,adj,A_tilde,scat_dict[sct_index1],scat_dict[sct_index2]))**4)
+        x = torch.FloatTensor.abs_(self.gc1(x,adj,A_tilde,scat_dict[sct_index1],scat_dict[sct_index2]))**4
         x = F.dropout(x, self.dropout, training=self.training)
         x = self.gc11(x, adj)
         return F.log_softmax(x, dim=1)
