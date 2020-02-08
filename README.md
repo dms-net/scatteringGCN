@@ -11,6 +11,7 @@ python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct
 
 ## requirement:
 pytorch\
-cuda
+cuda\
+scipy: for the sparse matrix operation 
 
 
