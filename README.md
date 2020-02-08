@@ -20,6 +20,10 @@ python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct
 8. dropout
 9. smoo
 
+\begin{center} <br>
+\includegraphics[width=8in]{Figures/Picture1.pdf} <br>
+\end{center}
+
 ## Training curve
 
 ## requirement:
