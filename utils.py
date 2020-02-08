@@ -46,17 +46,12 @@ def scattering1st(spmx,order):
     for i in range(order-1):
         adj_power = torch.spmm(adj_power.cuda(),adj_sct.cuda().to_dense())
     print('Generating SCT')
-    #print(type(adj_power-I_n))
-    #print(type(adj_power))
     adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.cuda())
     adj_int.data=abs(adj_int.data)
-    #return -1*adj_int
     return adj_int
 
 def scattering2nd(m1,m2):
     m3 =  torch.spmm(m1,m2)
-    m3.data = abs(m3.data)**4
-#    adj_power.data = abs(adj_power.data)
     return m3
 
 def parse_index_file(filename):
@@ -120,58 +115,33 @@ def load_citation(dataset_str="cora", normalization="AugNormAdj", cuda=True):
     idx_train = range(len(y))
     idx_val = range(len(y), len(y)+500)
 
-    # adj, features = preprocess_citation(adj, features, normalization)
-
-    # porting to pytorch
-    #features = torch.FloatTensor(np.array(features.todense())).float()
     labels = torch.LongTensor(labels)
     labels = torch.max(labels, dim=1)[1]
-    #adj = sparse_mx_to_torch_sparse_tensor(adj).float()
     idx_train = torch.LongTensor(idx_train)
     idx_val = torch.LongTensor(idx_val)
     idx_test = torch.LongTensor(idx_test)
 
     features = normalize(features)
-#    adj = normalize(adj)
-#    adj = normalize(adj + sp.eye(adj.shape[0]))
     A_tilde = normalize_adjacency_matrix(adj,sp.eye(adj.shape[0]))
     adj = normalizemx(adj)
     features = torch.FloatTensor(np.array(features.todense()))
 
     print('Loading')
     adj_sct1 = scattering1st(adj,2)
-    #adj_sct1 = sparse_mx_to_torch_sparse_tensor(adj_sct1)
     print('SCT 1 done')
     print('Loading')
     adj_sct2 = scattering1st(adj,4)
-    #adj_sct2 = sparse_mx_to_torch_sparse_tensor(adj_sct2)
     print('SCT 2 done')
     adj_sct4 = scattering1st(adj,8)
-    #adj_sct4 = sparse_mx_to_torch_sparse_tensor(adj_sct4)
     print('SCT 4 done')
     adj_sct8=scattering2nd(adj_sct4,adj_sct2)
-    #adj_sct8 = sparse_mx_to_torch_sparse_tensor(adj_sct8)
 
     print('SCT 8 done')
-    #adj_sct16 = scattering1st(adj,2)
     adj_sct16=scattering2nd(adj_sct2,adj_sct1)
     print('SCT 16 done')
 
     adj = sparse_mx_to_torch_sparse_tensor(adj)
     A_tilde = sparse_mx_to_torch_sparse_tensor(A_tilde)
-#    adj_sct1 = sparse_mx_to_torch_sparse_tensor(adj_sct1)
-#    adj_sct2 = sparse_mx_to_torch_sparse_tensor(adj_sct2)
-#    adj_sct4 = sparse_mx_to_torch_sparse_tensor(adj_sct4)
-#    adj_sct8 = sparse_mx_to_torch_sparse_tensor(adj_sct8)
-#    adj_sct16 = sparse_mx_to_torch_sparse_tensor(adj_sct16)
-
-#    if cuda:
-#        features = features.cuda()
-#        adj = adj.cuda()
-#        labels = labels.cuda()
-#        idx_train = idx_train.cuda()
-#        idx_val = idx_val.cuda()
-#        idx_test = idx_test.cuda()
     return adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16, features, labels, idx_train, idx_val, idx_test
 
 def sgc_precompute(features, adj, degree):
