@@ -20,7 +20,8 @@ python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct
 8. dropout
 9. smoo
 
-[Structure](Figures/Picture1.pdf){width=65%}
+<img src="Figures/Picture1.pdf" alt="Structure"  width="300" height="300">
+
 
 ## Training curve
 
