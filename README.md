@@ -1,5 +1,8 @@
 # scatteringGCN
 
+## Reference:\
+Yimeng Min, Frederik Wenkel and Guy Wolf\
+Scattering GCN: overcoming oversmoothness in graph convolutional networks\
 
 ## To run the Code
 (default:Cora)\
@@ -10,6 +13,4 @@ python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct
 pytorch\
 cuda
 
-##Reference:\
-Yimeng Min, Frederik Wenkel and Guy Wolf\
-Scattering GCN: overcoming oversmoothness in graph convolutional networks\
+
