@@ -30,7 +30,7 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 
 
 <img src="Figures/Picture1.png" alt="Structure"  width="600">
-
+Figure 5. Architectures Visualization. Dataset: a) Cora, b) Citeseer, c) Pubmed. The number indicated under each channel signifies the number of neurons associated with it.\
 
 ## Training curve 
 with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution\
