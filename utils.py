@@ -156,6 +156,12 @@ def set_seed(seed, cuda):
     torch.manual_seed(seed)
     if cuda: torch.cuda.manual_seed(seed)
 
+def accuracy(output, labels):
+    preds = output.max(1)[1].type_as(labels)
+    correct = preds.eq(labels).double()
+    correct = correct.sum()
+    return correct / len(labels)
+
 def loadRedditFromNPZ(dataset_dir):
     adj = sp.load_npz(dataset_dir+"reddit_adj.npz")
     data = np.load(dataset_dir+"reddit.npz")
