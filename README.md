@@ -17,9 +17,9 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 5. `epochs`: Training epochs
 6. `sct_inx1`: the index of first channel, the index order is listed in Tab 3,4,5.
 7. `sct_inx2`: the index of second channel, the index order is listed in Tab 3,4,5.
-| Index | 0 | 1 | 2 | 3 | 4 |
-|-------|---|---|---|---|---|
-|Scattering term |<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{Psi_1}}">     | <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{Psi_2}}">  | <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{Psi_3}}">  |  <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  | <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2|\Psi_3|}">  |
+
+*Tabspace* Scattering term
+*Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{Psi_1}">     | <img *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{Psi_2}">  | <img *Tabspace* *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{Psi_3}}">  |  <img *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  | <img *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2|\Psi_3|}">  |
 
 8. `dropout`: ~
 9. `smoo`: The graph residual convolution kernel's parameters.
