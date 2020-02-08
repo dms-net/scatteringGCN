@@ -124,3 +124,4 @@ print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 # Testing
 test()
 
+# python train.py --dataset citeseer --hid1 35 --hid2 20 --l1 0.005 --epochs 100 --sct_inx1 0 --dropout 0.9 --smoo 0.1
