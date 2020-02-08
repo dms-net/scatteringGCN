@@ -19,7 +19,10 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 7. `sct_inx2`: the index of second channel, the index order is listed in Tab 3,4,5.
 
 *Tabspace* Scattering term
-*Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{Psi_1}">     | <img *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{Psi_2}">  | <img *Tabspace* *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{Psi_3}}">  |  <img *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  | <img *Tabspace* *Tabspace* src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2|\Psi_3|}">  |
+*Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{Psi_1}">     \
+*Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{Psi_2}">  \ 
+*Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{Psi_3}}">  \  
+*Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1|\Psi_2}|">  \ *Tabspace* *Tabspace* <img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_2|\Psi_3|}">  
 
 8. `dropout`: ~
 9. `smoo`: The graph residual convolution kernel's parameters.
