@@ -1,8 +1,6 @@
 import torch.nn as nn
 import torch 
 import torch.nn.functional as F
-# from layers import  GC
-# from layers import GC_sct,GC_sct_res,GC_nGCN,GC_nGSN,GC_withres,NGCN
 from layers import GC_withres,NGCN
 class GCN(nn.Module):
     def __init__(self, nfeat, para3,para4, nclass, dropout,smoo):
