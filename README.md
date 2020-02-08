@@ -29,7 +29,7 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 9. `smoo`: The graph residual convolution kernel's parameters.
 
 
-<img src="Figures/Picture1.jpg" alt="Structure"  width="300" height="300">
+<img src="Figures/Picture1.png" alt="Structure"  width="600">
 
 
 ## Training curve 
