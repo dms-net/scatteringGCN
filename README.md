@@ -7,7 +7,7 @@
 ## To run the Code
 (default:Cora)\
 for example run:\
-python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropout 0.9 --smoo 0.1
+python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropout 0.9 --smoo 0.1
 
 ## Details of the parameters
 1. hid1
