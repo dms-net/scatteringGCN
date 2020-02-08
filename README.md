@@ -13,7 +13,14 @@ python train.py --dataset cora --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct
 1. hid1
 2. hid2
 3. hid3
-4. 
+4. l1
+5. epochs
+6. sct_inx1
+7. sct_inx2
+8. dropout
+9. smoo
+
+## Training curve
 
 ## requirement:
 pytorch\
