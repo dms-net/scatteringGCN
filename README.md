@@ -33,7 +33,7 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 
 
 ## Training curve 
-`with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual` convolution)
+with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution
 <img src="Figures/Accuracy.jpg" alt="Accuracy"  width="600" >
 
 
