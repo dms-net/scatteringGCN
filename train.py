@@ -13,7 +13,7 @@ from utils_sct import load_data_sct, accuracy
 from models import GCN
 # Training settings
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, default="pubmed",help='Dataset to use.')
+parser.add_argument('--dataset', type=str, default="cora",help='Dataset to use.')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
 parser.add_argument('--fastmode', action='store_true', default=False,
