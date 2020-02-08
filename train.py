@@ -9,7 +9,6 @@ from scipy import sparse
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
-#from utils import load_data, accuracy
 from utils_sct import load_data_sct, accuracy
 from models import GCN
 # Training settings
@@ -126,5 +125,3 @@ print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 # Testing
 test()
 
-
-np.savetxt('t_log/seed_%d_hid%d_%d_lr%.4f_dpt%.4f_inx1_%d_inx2_%d_epoch_%d_smoo%.2f.txt'%(args.seed,args.hid1,args.hid2,args.lr,args.dropout,args.sct_inx1,args.sct_inx2,args.epochs,args.smoo),acc_val_list)
