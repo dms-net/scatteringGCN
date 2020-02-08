@@ -32,7 +32,11 @@ python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropo
 <img src="Figures/Picture1.jpg" alt="Structure"  width="300" height="300">
 
 
-## Training curve
+## Training curve 
+### (with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution)
+<img src="Figures/Accuracy.jpg" alt="Accuracy"  width="300" height="300">
+
+
 
 ## requirement:
 pytorch\
