@@ -10,7 +10,7 @@ for example run:\
 python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropout 0.9 --smoo 0.1
 
 ## Details of the parameters
-1. `hid1`: the width in channel <img src="Figures/A.jpg" alt="Structure"  width="20" height="20">
+1. `hid1`: the width in channel <img src="Figures/A.png" alt="Structure"  width="20" height="20">
 2. `hid2`
 3. `hid3`
 4. `l1`
