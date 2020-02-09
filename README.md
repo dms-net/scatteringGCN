@@ -9,11 +9,14 @@
 for example run:\
 python train.py --hid1 20 --hid2 20 --l1 0.005 --epochs 200 --sct_inx1 3 --dropout 0.9 --smoo 0.1
 
-For ruunning other model(take citeseer as example), please change the 
+For running other model(citeseer as example), please change the 
 `med_f0=20,med_f1=20,med_f2=20`
 and 
 `self.gc11 = GC_withres(60+para3+para4, nclass,smooth=smoo)`
-in the model.py
+in model.py. and run:\
+python train.py --dataset citeseer --l1 0.005 --epochs 200 --sct_inx1 0 --sct_inx2 0 --dropout 0.98 --smoo 0.01 --hid1 20 --hid2 30
+
+
 
 ## Details of the parameters
 1. `hid1`: the width in channel  <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{J_1}}">
