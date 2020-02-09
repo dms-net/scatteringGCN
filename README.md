@@ -1,4 +1,4 @@
-# scatteringGCN
+# Scattering GCN
 
 ## Reference:
 **Yimeng Min, Frederik Wenkel and Guy Wolf**\
