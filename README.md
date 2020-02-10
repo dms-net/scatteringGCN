@@ -42,7 +42,7 @@ python train.py --dataset citeseer --l1 0.005 --sct_inx1 0 --sct_inx2 0 --dropou
 Figure. Architectures Visualization. Dataset: a) Cora, b) Citeseer, c) Pubmed. The number indicated under each channel signifies the number of neurons associated with it.
 
 ## Training curve 
-with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution\
+with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution(Cora）\
 <img src="Figures/Accu.jpg" alt="Accuracy"  width="600" >
 
 
