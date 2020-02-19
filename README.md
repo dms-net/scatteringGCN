@@ -1,7 +1,6 @@
 # Scattering GCN
 
 ## Reference:
-**Yimeng Min, Frederik Wenkel and Guy Wolf**\
 *Scattering GCN: overcoming oversmoothness in graph convolutional networks*
 
 ## To run the Code
