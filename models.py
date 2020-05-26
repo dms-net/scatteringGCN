@@ -7,6 +7,8 @@ class GCN(nn.Module):
         super(GCN, self).__init__()
 
         self.gc1 = NGCN(nfeat,med_f0=15,med_f1=15,med_f2=15,med_f3=para3,med_f4=para4)
+#        self.gc1 = NGCN(nfeat,med_f0=28,med_f1=1,med_f2=1,med_f3=para3,med_f4=para4)
+#        self.gc2 = NGCN(30+para3+para4,med_f0=28,med_f1=1,med_f2=1,med_f3=para3,med_f4=para4)
         self.gc11 = GC_withres(45+para3+para4, nclass,smooth=smoo)
         self.dropout = dropout
 
