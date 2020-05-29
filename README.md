@@ -52,7 +52,7 @@ cuda\
 scipy: for the sparse matrix operation 
 
 ## Misc
-GCN(pytorch):\
+GCN:\
 https://github.com/tkipf/pygcn \
-GAT(pytorch):\
-https://github.com/Diego999/pyGAT/blob/master/train.py (you may need to remove the [0] in line 111 and 112)
+GAT:\
+https://github.com/PetarV-/GAT
