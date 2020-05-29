@@ -44,6 +44,9 @@ Figure. Architectures Visualization. Dataset: a) Cora, b) Citeseer, c) Pubmed. T
 with different <img src="https://render.githubusercontent.com/render/math?math=\alpha"> for graph residual convolution(Cora）\
 <img src="Figures/Accu.jpg" alt="Accuracy"  width="600" >
 
+## Running time 
+on Citeseer:\
+<img src="Figures/cite_gat_sct.png" alt="Citeseer"  width="600">
 
 
 ## Requirement:
