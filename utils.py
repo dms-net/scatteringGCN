@@ -47,11 +47,12 @@ def scattering1st(spmx,order):
         adj_power = torch.spmm(adj_power.cuda(),adj_sct.cuda().to_dense())
     print('Generating SCT')
     adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.cuda())
-    adj_int.data=abs(adj_int.data)
     return adj_int
 
 def scattering2nd(m1,m2):
-    m3 =  torch.spmm(m1,m2)
+    _m2 = m2
+    _m2.data=abs(_m2.data)
+    m3 =  torch.spmm(m1,_m2)
     return m3
 
 def parse_index_file(filename):
