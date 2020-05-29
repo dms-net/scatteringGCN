@@ -13,8 +13,8 @@ For running other model(citeseer as example), please change the
 and 
 `self.gc11 = GC_withres(60+para3+para4, nclass,smooth=smoo)`
 in model.py. and run:\
-python train.py --dataset citeseer --l1 0.005 --sct_inx1 0 --sct_inx2 0 --dropout 0.98 --smoo 0.03 --hid1 20 --hid2 30
-
+python train.py --dataset citeseer --l1 0.005 --sct_inx1 0 --sct_inx2 0 --dropout 0.98 --smoo 0.04 --hid1 20 --hid2 30
+(med_f0=15,med_f1=15,med_f2=15)
 
 
 ## Details of the parameters
