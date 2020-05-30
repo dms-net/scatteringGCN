@@ -53,7 +53,7 @@ class Net(torch.nn.Module):
         super(Net, self).__init__()
         self.sct1 = SCAT_Red(in_features=1639,med_f0=40,med_f1=20,med_f2=20,med_f3=20,med_f4=20)
         self.sct2 = SCAT_Red(in_features=120,med_f0=40,med_f1=20,med_f2=20,med_f3=20,med_f4=20)
-        self.res1 = GC_withres(120,4,smooth=0.1) 
+        self.res1 = GC_withres(120,4,smooth=0.1)
         self.dropout = dropout
     def forward(self):
         x = torch.FloatTensor.abs_(self.sct1(data.x,A_tilde= A_tilde,adj = adj))**1
@@ -64,7 +64,7 @@ class Net(torch.nn.Module):
         return F.log_softmax(x, dim=1)
 
 model, data = Net().to(device), data.to(device)
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.005, weight_decay=5e-4)
 
 
 
