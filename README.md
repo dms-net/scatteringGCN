@@ -20,8 +20,8 @@ python
 3. `weight_decay`:  <-----L2 reg 
 4. `l1`:  <-----L1 reg 
 5. `epochs`:  <-----Training epochs
-6. `sct_inx1`:  <-----the index of first channel, the index order is listed in Tab 3,4,5.
-7. `sct_inx2`:  <-----the index of second channel, the index order is listed in Tab 3,4,5.
+6. `sct_inx1`:  <-----the index of first channel, the index order is listed in ablation study.
+7. `sct_inx2`:  <-----the index of second channel, the index order is listed in ablation study.
 
 * * Scattering term
 *  * Index = 0 <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Psi_1}">     
