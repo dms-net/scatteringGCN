@@ -9,7 +9,9 @@ for example run:\
 python train.py --hid1 11 --hid2 6  --sct_inx1 1 --sct_inx2 0 --smoo 0.35
 
 citeseer:\
-python train.py --dataset citeseer --sct_inx1 1 --sct_inx2 3 --dropout 0.65 --smoo 0.5 --hid1 9 --hid2 30
+python citeseer.py
+
+pubmed:\
 
 ## Details of the parameters
 1. `hid1`: the width in channel  <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{J_1}}">
