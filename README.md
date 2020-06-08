@@ -12,6 +12,7 @@ citeseer:\
 python citeseer.py
 
 pubmed:\
+python 
 
 ## Details of the parameters
 1. `hid1`: the width in channel  <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{J_1}}">
