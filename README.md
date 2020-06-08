@@ -6,18 +6,10 @@
 ## To run the Code
 (default:Cora)\
 for example run:\
-python train.py --hid1 20 --hid2 20 --l1 0.005 --sct_inx1 3 --dropout 0.9 --smoo 0.1
+python train.py --hid1 11 --hid2 6  --sct_inx1 1 --sct_inx2 0 --smoo 0.35
 
-For running other model(citeseer as example), please change the 
-`med_f0=20,med_f1=20,med_f2=20`
-and 
-`self.gc11 = GC_withres(60+para3+para4, nclass,smooth=smoo)`
-in model.py. and run:\
-python train.py --dataset citeseer --l1 0.005 --sct_inx1 0 --sct_inx2 0 --dropout 0.98 --smoo 0.04 --hid1 20 --hid2 30
-(med_f0=15,med_f1=15,med_f2=15)\
-pubmed:(med_f0=20,med_f1=20,med_f2=20)\
-python train.py --hid1 19 --hid2 22 --l1 5e-3 --sct_inx1 1 --sct_inx2 0 --dropout 0.9 --smoo 1.0 --epoch 500
-
+citeseer
+python train.py --dataset citeseer --sct_inx1 1 --sct_inx2 3 --dropout 0.6 --smoo 0.5
 
 ## Details of the parameters
 1. `hid1`: the width in channel  <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{J_1}}">
