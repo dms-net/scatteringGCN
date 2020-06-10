@@ -32,7 +32,7 @@ parser.add_argument('--hid2', type=int, default=30,
                     help='Number of hidden units.')
 parser.add_argument('--smoo', type=float, default=0.5,
                     help='Smooth for Res layer')
-parser.add_argument('--dropout', type=float, default=0.65,
+parser.add_argument('--dropout', type=float, default=0.6,
                     help='Dropout rate (1 - keep probability).')
 parser.add_argument('--normalization', type=str, default='AugNormAdj',
                     choices=['AugNormAdj'],
