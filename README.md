@@ -34,14 +34,8 @@ python pubmed.py
 9. `smoo`: The graph residual convolution kernel's parameters.
 
 
-<img src="Figures/Picture1.png" alt="Structure"  width="600">
-Figure. Architectures Visualization. Dataset: a) Cora, b) Citeseer, c) Pubmed. The number indicated under each channel signifies the number of neurons associated with it.
 
 
-
-## Running time 
-on Citeseer:\
-<img src="Figures/cite_gat_sct.png" alt="Citeseer"  width="600">
 
 
 ## Requirement:
