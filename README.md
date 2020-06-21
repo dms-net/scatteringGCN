@@ -6,13 +6,8 @@
 ## To run the Code
 (default:Cora)\
 for example run:\
-python train.py --hid1 11 --hid2 6  --sct_inx1 1 --sct_inx2 0 --smoo 0.35
 
-citeseer:\
-python citeseer.py
 
-pubmed:\
-python pubmed.py
 
 ## Details of the parameters
 1. `hid1`: the width in channel  <-----<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{\Phi_{J_1}}">
