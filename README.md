@@ -4,7 +4,7 @@
 *Scattering GCN: overcoming oversmoothness in graph convolutional networks*
 
 ## To run the Code
-(default:Cora)\
+(default:Cora)
 
 
 
