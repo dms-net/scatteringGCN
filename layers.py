@@ -135,8 +135,12 @@ class NGCN(Module):
             self.bias3.data.uniform_(-stdv3, stdv3)
             self.bias4.data.uniform_(-stdv4, stdv4)
 
-    def forward(self, input, adj,A_tilde,adj_sct_o1,adj_sct_o2):
+    def forward(self, input, adj,A_tilde,s1_sct,s2_sct,s3_sct,adj_sct_o1,adj_sct_o2):
         # adj is extracted from the graph structure
+        # adj_sct_o1,adj_sct_o2: two scatterng matrix index of different order
+        # e.g. adj_sct_o1 = [1,1]--> denotes 1st order, 1 index
+        # e.g. adj_sct_o1 = [2,1]--> denotes 2nd order
+        # 1_sct,2_sct,3_sct: three first order matrix
         support0 = torch.mm(input, self.weight0)
         output0 = torch.spmm(A_tilde, support0) + self.bias0
         support1 = torch.mm(input, self.weight1)
@@ -147,13 +151,62 @@ class NGCN(Module):
         output2 = torch.spmm(A_tilde, support2)
         output2 = torch.spmm(A_tilde, output2)
         output2 = torch.spmm(A_tilde, output2)+ self.bias2
-
-
         support3 = torch.mm(input, self.weight3) 
-        output3 = torch.spmm(adj_sct_o1.cuda(), support3)+ self.bias3
+        if adj_sct_o1[0] == 1:
+            if adj_sct_o1[1] == 1:
+                output3 = torch.spmm(s1_sct.cuda(), support3)+ self.bias3
+            elif adj_sct_o1[1] == 2:
+                output3 = torch.spmm(s2_sct.cuda(), support3)+ self.bias3
+            elif adj_sct_o1[1] == 3:
+                output3 = torch.spmm(s3_sct.cuda(), support3)+ self.bias3
+            else:
+                print('Please type in the right index!')
+
+        elif adj_sct_o1[0] == 2:
+            # second order scatt
+            # adj_sct_o1[1] == 1----> psi_2|psi_1 x |
+            # adj_sct_o1[1] == 2----> psi_3|psi_1 x |
+            # adj_sct_o1[1] == 3----> psi_3|psi_2 x |
+            if adj_sct_o1[1] == 1:
+                output3 = torch.spmm(s2_sct.cuda(),torch.FloatTensor.abs(torch.spmm(s1_sct.cuda(), support3)))+ self.bias3
+            elif adj_sct_o1[1] == 2:
+                output3 = torch.spmm(s3_sct.cuda(),torch.FloatTensor.abs(torch.spmm(s1_sct.cuda(), support3)))+ self.bias3
+            elif adj_sct_o1[1] == 3:
+                output3 = torch.spmm(s3_sct.cuda(),torch.FloatTensor.abs(torch.spmm(s2_sct.cuda(), support3)))+ self.bias3
+            else:
+                print('Please type in the right index!')
+        else:
+            print('Please type in the right index!')
+
 
         support4 = torch.mm(input, self.weight4)
-        output4 = torch.spmm(adj_sct_o2.cuda(), support4)+ self.bias4
+        if adj_sct_o2[0] == 1:
+            if adj_sct_o2[1] == 1:
+                output4 = torch.spmm(s1_sct.cuda(), support4)+ self.bias4
+            elif adj_sct_o2[1] == 2:
+                output4 = torch.spmm(s2_sct.cuda(), support4)+ self.bias4
+            elif adj_sct_o2[1] == 3:
+                output4 = torch.spmm(s3_sct.cuda(), support4)+ self.bias4
+            else:
+                print('Please type in the right index!')
+
+        elif adj_sct_o2[0] == 2:
+            # second order scatt
+            # adj_sct_o1[1] == 1----> psi_2|psi_1 x |
+            # adj_sct_o1[1] == 2----> psi_3|psi_1 x |
+            # adj_sct_o1[1] == 3----> psi_3|psi_2 x |
+            if adj_sct_o2[1] == 1:
+                output4 = torch.spmm(s2_sct.cuda(),torch.FloatTensor.abs(torch.spmm(s1_sct.cuda(), support4)))+ self.bias4
+            elif adj_sct_o2[1] == 2:
+                output4 = torch.spmm(s3_sct.cuda(),torch.FloatTensor.abs(torch.spmm(s1_sct.cuda(), support4)))+ self.bias4
+            elif adj_sct_o2[1] == 3:
+                output4 = torch.spmm(s3_sct.cuda(),torch.FloatTensor.abs(torch.spmm(s2_sct.cuda(), support4)))+ self.bias4
+            else:
+                print('Please type in the right index!')
+        else:
+            print('Please type in the right index!')
+
+
 
 
         support_3hop = torch.cat((output0,output1,output2,output3,output4), 1)

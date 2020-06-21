@@ -26,19 +26,23 @@ parser.add_argument('--weight_decay', type=float, default=0.0,
                     help='Weight decay (L2 loss on parameters).')
 parser.add_argument('--l1', type=float, default=0.0,
                     help='Weight decay (L1 loss on parameters).')
-parser.add_argument('--hid1', type=int, default=5,
+parser.add_argument('--hid1', type=int, default=11,
                     help='Number of hidden units.')
-parser.add_argument('--hid2', type=int, default=5,
+parser.add_argument('--hid2', type=int, default=6,
                     help='Number of hidden units.')
-parser.add_argument('--smoo', type=float, default=0.5,
+parser.add_argument('--smoo', type=float, default=0.35,
                     help='Smooth for Res layer')
 parser.add_argument('--dropout', type=float, default=0.5,
                     help='Dropout rate (1 - keep probability).')
 parser.add_argument('--normalization', type=str, default='AugNormAdj',
                     choices=['AugNormAdj'],
                     help='Normalization method for the adjacency matrix.')
-parser.add_argument('--sct_inx1', type=int, default=0, help='scattering index1')
-parser.add_argument('--sct_inx2', type=int, default=1, help='scattering index2.')
+#parser.add_argument('--sct_inx1', type=int, default=0, help='scattering index1')
+#parser.add_argument('--sct_inx2', type=int, default=1, help='scattering index2.')
+parser.add_argument('--order_1',type=int, default=1)
+parser.add_argument('--sct_inx1', type=int, default=1)
+parser.add_argument('--order_2',type=int, default=2)
+parser.add_argument('--sct_inx2', type=int, default=3)
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
@@ -49,7 +53,7 @@ if args.cuda:
 
 # Load data
 #adj, features, labels, idx_train, idx_val, idx_test = load_data()
-adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16, features, labels, idx_train, idx_val, idx_test = load_citation(args.dataset, args.normalization,args.cuda)
+adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,features, labels, idx_train, idx_val, idx_test = load_citation(args.dataset, args.normalization,args.cuda)
 # Model and optimizer
 model = GCN(nfeat=features.shape[1],
             para3=args.hid1,
@@ -77,7 +81,7 @@ def train(epoch):
     t = time.time()
     model.train()
     optimizer.zero_grad()
-    output = model(features,adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16,args.sct_inx1,args.sct_inx2)
+    output = model(features,adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,[args.order_1,args.sct_inx1],[args.order_2,args.sct_inx2])
     loss_train = F.nll_loss(output[idx_train], labels[idx_train])
 
     regularization_loss = 0
@@ -92,7 +96,7 @@ def train(epoch):
         # Evaluate validation set performance separately,
         # deactivates dropout during validation run.
         model.eval()
-        output = model(features,adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16,args.sct_inx1,args.sct_inx2)
+        output = model(features,adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,[args.order_1,args.sct_inx1],[args.order_2,args.sct_inx2])
     loss_val = F.nll_loss(output[idx_val], labels[idx_val])
     acc_val = accuracy(output[idx_val], labels[idx_val])
     print('Epoch: {:04d}'.format(epoch+1),
@@ -106,7 +110,7 @@ def train(epoch):
 
 def test():
     model.eval()
-    output = model(features,adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,adj_sct8,adj_sct16,args.sct_inx1,args.sct_inx2)
+    output = model(features,adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,[args.order_1,args.sct_inx1],[args.order_2,args.sct_inx2])
     loss_test = F.nll_loss(output[idx_test], labels[idx_test])
     acc_test = accuracy(output[idx_test], labels[idx_test])
     print("Test set results:",
