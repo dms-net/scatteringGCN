@@ -5,7 +5,7 @@
 
 ## To run the Code
 (default:Cora)\
-for example run:\
+
 
 
 
