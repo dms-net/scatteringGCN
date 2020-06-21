@@ -36,23 +36,6 @@ def normalizemx(mx):
     mx = mx.dot(D)
     return mx
 
-#def scattering_trans(input_sign,spmx,order=2,index1):
-#    '''
-#    input_sign: the input signal:(N,H_input)
-#    spmx: sparse matrix:(N,N)
-#    order: scattering order
-#    index: scattering index
-#    '''
-#    I_n = sp.eye(spmx.shape[0])
-#    adj_sct = 0.5*(spmx+I_n) 
-#    sct_P = sparse_mx_to_torch_sparse_tensor(adj_sct) # The P
-#    output_sct1_ = input_sign
-#    output_sct1_x = input_sign
-#    for i in index1:
-#        output_sct1_ = torch.spmm(sct_P,output_sct1_)
-#        output_sct1_x = torch.spmm(sct_P,torch.spmm(sct_P,output_sct1_x))
-#    psi_1 = torch.FloatTensor.abs(output_sct1_ - output_sct1_x)
-#    return psi_1 
 
 
 def scattering1st(spmx,order):
@@ -68,11 +51,6 @@ def scattering1st(spmx,order):
     adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.cuda())
     return adj_int
 
-def scattering2nd(m1,m2):
-    _m2 = m2
-    _m2.data=abs(_m2.data)
-    m3 =  torch.spmm(m1,_m2)
-    return m3
 
 def parse_index_file(filename):
     """Parse index file."""
