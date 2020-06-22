@@ -32,13 +32,12 @@ parser.add_argument('--hid2', type=int, default=6,
                     help='Number of hidden units.')
 parser.add_argument('--smoo', type=float, default=0.35,
                     help='Smooth for Res layer')
-parser.add_argument('--dropout', type=float, default=0.5,
+parser.add_argument('--dropout', type=float, default=0.9,
                     help='Dropout rate (1 - keep probability).')
 parser.add_argument('--normalization', type=str, default='AugNormAdj',
                     choices=['AugNormAdj'],
                     help='Normalization method for the adjacency matrix.')
-#parser.add_argument('--sct_inx1', type=int, default=0, help='scattering index1')
-#parser.add_argument('--sct_inx2', type=int, default=1, help='scattering index2.')
+
 parser.add_argument('--order_1',type=int, default=1)
 parser.add_argument('--sct_inx1', type=int, default=1)
 parser.add_argument('--order_2',type=int, default=2)
