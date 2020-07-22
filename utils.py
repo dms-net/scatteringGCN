@@ -42,13 +42,16 @@ def scattering1st(spmx,order):
     I_n = sp.eye(spmx.shape[0])
     adj_sct = 0.5*(spmx+I_n)
     adj_power = adj_sct
-    adj_power = sparse_mx_to_torch_sparse_tensor(adj_power)
-    adj_sct = sparse_mx_to_torch_sparse_tensor(adj_sct)
+    adj_power = sparse_mx_to_torch_sparse_tensor(adj_power).cuda()
+    adj_sct = sparse_mx_to_torch_sparse_tensor(adj_sct).cuda()
     I_n = sparse_mx_to_torch_sparse_tensor(I_n)
-    for i in range(order-1):
-        adj_power = torch.spmm(adj_power.cuda(),adj_sct.cuda().to_dense())
-    print('Generating SCT')
-    adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.cuda())
+    if order>1:
+        for i in range(order-1):
+            adj_power = torch.spmm(adj_power,adj_sct.to_dense())
+            print('Generating SCT')
+        adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power)
+    else:
+        adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.to_dense())
     return adj_int
 
 
