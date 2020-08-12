@@ -61,11 +61,10 @@ model = GCN(nfeat=features.shape[1],
             dropout=args.dropout,
             smoo=args.smoo)
 
-optimizer = optim.Adam(model.parameters(),
-                       lr=args.lr, weight_decay=args.weight_decay)
+
 
 if args.cuda:
-    model.cuda()
+    model = model.cuda()
     features = features.cuda()
     A_tilde = A_tilde.cuda()
     adj = adj.cuda()
@@ -73,7 +72,9 @@ if args.cuda:
     idx_train = idx_train.cuda()
     idx_val = idx_val.cuda()
     idx_test = idx_test.cuda()
-
+    
+optimizer = optim.Adam(model.parameters(),
+                       lr=args.lr, weight_decay=args.weight_decay)
 
 acc_val_list = []
 def train(epoch):
