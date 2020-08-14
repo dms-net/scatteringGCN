@@ -42,7 +42,7 @@ parser.add_argument('--order_1',type=int, default=1)
 parser.add_argument('--sct_inx1', type=int, default=1)
 parser.add_argument('--order_2',type=int, default=2)
 parser.add_argument('--sct_inx2', type=int, default=3)
-args = parser.parse_args()
+args = parser.parse_args([])
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
 np.random.seed(args.seed)
