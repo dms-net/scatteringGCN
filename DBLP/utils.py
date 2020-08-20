@@ -37,19 +37,21 @@ def normalizemx(mx):
     return mx
 
 def scattering1st(spmx,order):
+#    print(type(spmx))
     I_n = sp.eye(spmx.shape[0])
     adj_sct = 0.5*(spmx+I_n)
     adj_power = adj_sct
-    adj_power = sparse_mx_to_torch_sparse_tensor(adj_power).cuda()
-    adj_sct = sparse_mx_to_torch_sparse_tensor(adj_sct).cuda()
+    adj_power = sparse_mx_to_torch_sparse_tensor(adj_power)
+    adj_sct = sparse_mx_to_torch_sparse_tensor(adj_sct)
     I_n = sparse_mx_to_torch_sparse_tensor(I_n)
-    if order>1:
-        for i in range(order-1):
-            adj_power = torch.spmm(adj_power,adj_sct.to_dense())
-            print('Generating SCT')
-        adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power)
-    else:
-        adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.to_dense())
+    for i in range(order-1):
+        adj_power = torch.spmm(adj_power.cuda(),adj_sct.cuda().to_dense())
+#    print('Generating SCT')
+    #print(type(adj_power-I_n))
+    #print(type(adj_power))
+    adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.cuda())
+#    adj_int.data=abs(adj_int.data)
+    #return -1*adj_int
     return adj_int
 
 def scattering2nd(m1,m2):
