@@ -5,6 +5,7 @@ import time
 import argparse
 import numpy as np
 from scipy import sparse
+from torch.optim.lr_scheduler import MultiStepLR,StepLR
 
 import torch
 import torch.nn.functional as F
@@ -19,6 +20,8 @@ parser.add_argument('--fastmode', action='store_true', default=False,
                     help='Validate during training pass.')
 parser.add_argument('--seed', type=int, default=42, help='Random seed.')
 parser.add_argument('--epochs', type=int, default=200,
+                    help='Number of epochs to train.')
+parser.add_argument('--patience', type=int, default=200,
                     help='Number of epochs to train.')
 parser.add_argument('--lr', type=float, default=0.005,
                     help='Initial learning rate.')
@@ -75,9 +78,11 @@ if args.cuda:
     
 optimizer = optim.Adam(model.parameters(),
                        lr=args.lr, weight_decay=args.weight_decay)
+scheduler = StepLR(optimizer, step_size=50, gamma=0.9)
 
 acc_val_list = []
 def train(epoch):
+    global valid_error
     t = time.time()
     model.train()
     optimizer.zero_grad()
@@ -106,6 +111,7 @@ def train(epoch):
           'acc_val: {:.4f}'.format(acc_val.item()),
           'time: {:.4f}s'.format(time.time() - t))
     acc_val_list.append(acc_val.item())
+    valid_error = 1.0 - acc_val.item()
 
 
 def test():
@@ -120,8 +126,20 @@ def test():
 
 # Train model
 t_total = time.time()
+from pytorchtools import EarlyStopping
+
+patience = args.patience
+early_stopping = EarlyStopping(patience=patience, verbose=True)
+
 for epoch in range(args.epochs):
     train(epoch)
+    scheduler.step()
+    print('===')
+    print(valid_error)
+    early_stopping(valid_error, model)
+    if early_stopping.early_stop:
+        print("Early stopping")
+        break
 print("Optimization Finished!")
 print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 

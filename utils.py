@@ -35,9 +35,6 @@ def normalizemx(mx):
     D = D.power(-1)
     mx = mx.dot(D)
     return mx
-
-
-
 def scattering1st(spmx,order):
     I_n = sp.eye(spmx.shape[0])
     adj_sct = 0.5*(spmx+I_n)
@@ -53,7 +50,6 @@ def scattering1st(spmx,order):
     else:
         adj_int = torch.spmm((adj_power-I_n.cuda()),adj_power.to_dense())
     return adj_int
-
 
 def parse_index_file(filename):
     """Parse index file."""
@@ -112,9 +108,16 @@ def load_citation(dataset_str="cora", normalization="AugNormAdj", cuda=True):
     labels = np.vstack((ally, ty))
     labels[test_idx_reorder, :] = labels[test_idx_range, :]
 
+
     idx_test = test_idx_range.tolist()
     idx_train = range(len(y))
     idx_val = range(len(y), len(y)+500)
+
+#   take from https://github.com/tkipf/pygcn/blob/master/pygcn/utils.py
+#    idx_train = range(140)
+#    idx_val = range(200, 500)
+#    idx_test = range(500, 1500)
+
 
     labels = torch.LongTensor(labels)
     labels = torch.max(labels, dim=1)[1]

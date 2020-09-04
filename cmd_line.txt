@@ -1,0 +1,4 @@
+Cora
+python train.py --hid2 18 --epochs 500 --lr 0.01 --weight_decay 5e-5
+Citeseer
+python train.py --weight_decay 1e-4  --dataset citeseer --sct_inx1 2 --sct_inx2 3 --hid1 14 --hid2 27 --lr 0.01 --epochs 500 
