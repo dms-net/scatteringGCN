@@ -3,11 +3,15 @@ from __future__ import print_function
 from utils import load_citation, accuracy
 import time
 import argparse
+import torch
 import numpy as np
+torch.manual_seed(42)
+torch.cuda.manual_seed(42)
+np.random.seed(42)
+torch.backends.cudnn.deterministic = True
 from scipy import sparse
 from torch.optim.lr_scheduler import MultiStepLR,StepLR
 
-import torch
 import torch.nn.functional as F
 import torch.optim as optim
 from models import GCN
@@ -43,7 +47,7 @@ parser.add_argument('--normalization', type=str, default='AugNormAdj',
 
 parser.add_argument('--order_1',type=int, default=1)
 parser.add_argument('--sct_inx1', type=int, default=1)
-parser.add_argument('--order_2',type=int, default=2)
+parser.add_argument('--order_2',type=int, default=1)
 parser.add_argument('--sct_inx2', type=int, default=3)
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -105,6 +109,8 @@ def train(epoch):
     loss_val = F.nll_loss(output[idx_val], labels[idx_val])
     acc_val = accuracy(output[idx_val], labels[idx_val])
     print('Epoch: {:04d}'.format(epoch+1),
+            'Hid1: {:04d}'.format(args.hid1),
+           'Hid2: {:04d}'.format(args.hid2),
           'loss_train: {:.4f}'.format(loss_train.item()),
           'acc_train: {:.4f}'.format(acc_train.item()),
           'loss_val: {:.4f}'.format(loss_val.item()),
@@ -126,20 +132,19 @@ def test():
 
 # Train model
 t_total = time.time()
-from pytorchtools import EarlyStopping
+#from pytorchtools import EarlyStopping
 
-patience = args.patience
-early_stopping = EarlyStopping(patience=patience, verbose=True)
+#patience = args.patience
+#early_stopping = EarlyStopping(patience=patience, verbose=True)
 
 for epoch in range(args.epochs):
     train(epoch)
     scheduler.step()
-    print('===')
-    print(valid_error)
-    early_stopping(valid_error, model)
-    if early_stopping.early_stop:
-        print("Early stopping")
-        break
+#    print(valid_error)
+#    early_stopping(valid_error, model)
+#    if early_stopping.early_stop:
+#        print("Early stopping")
+#        break
 print("Optimization Finished!")
 print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
