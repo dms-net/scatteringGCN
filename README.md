@@ -19,3 +19,5 @@ scipy: for the sparse matrix operation
 https://github.com/tkipf/pygcn  \
 https://github.com/PetarV-/GAT \
 https://github.com/liqimai/Efficient-SSL
+
+Followup work: https://arxiv.org/abs/2010.15010
