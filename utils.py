@@ -129,15 +129,10 @@ def load_citation(dataset_str="cora", normalization="AugNormAdj", cuda=True):
     A_tilde = normalize_adjacency_matrix(adj,sp.eye(adj.shape[0]))
     adj = normalizemx(adj)
     features = torch.FloatTensor(np.array(features.todense()))
-
     print('Loading')
     adj_sct1 = scattering1st(adj,1) ## psi_1 = P(I-P)
-    print('SCT 1 done')
-    print('Loading')
     adj_sct2 = scattering1st(adj,2) # psi_2 = P^2(I-P^2)
-    print('SCT 2 done')
     adj_sct4 = scattering1st(adj,3) # psi_3 = P^4(I-P^4)
-    print('SCT 4 done')
     adj = sparse_mx_to_torch_sparse_tensor(adj)
     A_tilde = sparse_mx_to_torch_sparse_tensor(A_tilde)
     return adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,features, labels, idx_train, idx_val, idx_test
@@ -159,9 +154,3 @@ def accuracy(output, labels):
     correct = preds.eq(labels).double()
     correct = correct.sum()
     return correct / len(labels)
-
-def loadRedditFromNPZ(dataset_dir):
-    adj = sp.load_npz(dataset_dir+"reddit_adj.npz")
-    data = np.load(dataset_dir+"reddit.npz")
-
-    return adj, data['feats'], data['y_train'], data['y_val'], data['y_test'], data['train_index'], data['val_index'], data['test_index']
