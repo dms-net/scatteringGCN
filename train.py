@@ -31,13 +31,13 @@ parser.add_argument('--lr', type=float, default=0.005,
                     help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=0.0,
                     help='Weight decay (L2 loss on parameters).')
-parser.add_argument('--l1', type=float, default=0.0,
+parser.add_argument('--l1', type=float, default=0.05,
                     help='Weight decay (L1 loss on parameters).')
-parser.add_argument('--hid1', type=int, default=11,
+parser.add_argument('--hid1', type=int, default=13,
                     help='Number of hidden units.')
-parser.add_argument('--hid2', type=int, default=6,
+parser.add_argument('--hid2', type=int, default=25,
                     help='Number of hidden units.')
-parser.add_argument('--smoo', type=float, default=0.35,
+parser.add_argument('--smoo', type=float, default=0.5,
                     help='Smooth for Res layer')
 parser.add_argument('--dropout', type=float, default=0.9,
                     help='Dropout rate (1 - keep probability).')
