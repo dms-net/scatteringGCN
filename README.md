@@ -1,9 +1,13 @@
 # Scattering GCN
 
-## Reference:
-*Scattering GCN: overcoming oversmoothness in graph convolutional networks*
-
-
+```
+@article{min2020scattering,
+  title={Scattering GCN: Overcoming Oversmoothness in Graph Convolutional Networks},
+  author={Min, Yimeng and Wenkel, Frederik and Wolf, Guy},
+  journal={arXiv preprint arXiv:2003.08414},
+  year={2020}
+}
+```
 
 
 ## Requirement:
