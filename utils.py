@@ -132,7 +132,7 @@ def load_citation(dataset_str="cora", normalization="AugNormAdj", cuda=True):
     print('Loading')
     adj_sct1 = scattering1st(adj,1) ## psi_1 = P(I-P)
     adj_sct2 = scattering1st(adj,2) # psi_2 = P^2(I-P^2)
-    adj_sct4 = scattering1st(adj,3) # psi_3 = P^4(I-P^4)
+    adj_sct4 = scattering1st(adj,4) # psi_3 = P^4(I-P^4)
     adj = sparse_mx_to_torch_sparse_tensor(adj)
     A_tilde = sparse_mx_to_torch_sparse_tensor(A_tilde)
     return adj,A_tilde,adj_sct1,adj_sct2,adj_sct4,features, labels, idx_train, idx_val, idx_test
