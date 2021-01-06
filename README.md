@@ -21,5 +21,5 @@ https://github.com/PetarV-/GAT \
 https://github.com/liqimai/Efficient-SSL
 
 Followup work:<br>
-https://arxiv.org/abs/2010.15010
+https://arxiv.org/abs/2010.15010 <br>
 https://github.com/dms-net/Attention-based-Scattering
