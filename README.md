@@ -1,5 +1,10 @@
 # Scattering GCN
 
+The followup work is here:
+https://arxiv.org/abs/2010.15010  to be appeared at ICASSP<br>
+https://github.com/dms-net/Attention-based-Scattering
+
+
 ```
 @article{min2020scattering,
   title={Scattering GCN: Overcoming Oversmoothness in Graph Convolutional Networks},
@@ -20,6 +25,3 @@ https://github.com/tkipf/pygcn  \
 https://github.com/PetarV-/GAT \
 https://github.com/liqimai/Efficient-SSL
 
-Followup work:<br>
-https://arxiv.org/abs/2010.15010 <br>
-https://github.com/dms-net/Attention-based-Scattering
