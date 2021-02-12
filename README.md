@@ -1,6 +1,8 @@
 # Scattering GCN
 
-The followup work is here:
+The followup work is here: <br>
+(attention-based architecture to produce adaptive taskdriven node representations) <br>
+
 https://arxiv.org/abs/2010.15010  to be appeared at ICASSP<br>
 https://github.com/dms-net/Attention-based-Scattering
 
