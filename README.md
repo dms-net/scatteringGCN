@@ -19,6 +19,20 @@ python train.py
   year={2020}
 }
 ```
+During the training, we found that we can assign different widths of channels and achieve similar performace (sometimes even seems better): 
+e.g. here is the training history of hid1:16 hid2:51 dropout:0.92
+```
+python train.py  --hid1 16 --hid2 51  --dropout 0.92
+```
+![Alt text](Figures/h116h251.png)
+
+Where the highest validation accuracy@Epoch=175 corresponds to a test accuracy of 84.2.
+During the grid search, we search the widths of scattering channels, dropout and the smooth parameters for the graph res layer. Tuning the width of the three los-pass ones may also result in better performance. 
+Some very different widths: e.g.(python train.py --hid1 5 --hid2 50 --smoo 0.6) can also have relatively good performance on the cora.
+The scatteringGCN relies on handcrafted design, requiring careful selection of frequency bands.
+We recommend using the scattering attention based model for learning node-wise weights for combining multiple scattering and GCN channels, though may hurt the performance.
+
+Another thing we want to re-emphasize is that the activation value in this paper is ||^q, we don't use relu/tanh, etc.
 
 
 ## Requirement:
