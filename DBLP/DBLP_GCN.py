@@ -80,7 +80,8 @@ scheduler = StepLR(optimizer, step_size=100, gamma=0.9)
 
 def train():
     model.train()
-    output = model(features, adj)
+#    output = model(features, adj)
+    output = model(features,A_tilde)
     optimizer.zero_grad()
     F.nll_loss(output[train_mask], data.y[train_mask]).backward()
     optimizer.step()
